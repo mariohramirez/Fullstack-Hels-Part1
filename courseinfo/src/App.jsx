@@ -31,25 +31,28 @@ const Total = (props) => {
     <>
       <p>
         Number of exercises{" "}
-        {props.parts[0].exercise + props.parts[1].exercise + props.parts[2].exercise}
+        {props.parts[0].exercise +
+          props.parts[1].exercise +
+          props.parts[2].exercise}
       </p>
     </>
   );
 };
 
 const App = () => {
-  const course = "Half Stack application development";
-  const parts = [
-    { name: "Fundamentals of React", exercise: 10 },
-    { name: "Using props to pass data", exercise: 7 },
-    { name: "State of a component", exercise: 14 },
-  ];
-
+  const course = {
+    name: "Half Stack application development",
+    parts: [
+      { name: "Fundamentals of React", exercise: 10 },
+      { name: "Using props to pass data", exercise: 7 },
+      { name: "State of a component", exercise: 14 },
+    ],
+  };
   return (
     <div>
-      <Header name={course} />
-      <Content parts={parts} />
-      <Total parts={parts} />
+      <Header name={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   );
 };
