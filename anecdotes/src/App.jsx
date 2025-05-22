@@ -4,6 +4,10 @@ const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>;
 };
 
+const DispalyVote = (props) => {
+  return <p>Has {props.votes} votes</p>;
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -17,17 +21,30 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  const [randomNumber, setRandomNumber] = useState(0);
 
-  const handleOnClick = () => {
-    const randomNumber = Math.floor(Math.random() * anecdotes.length);
-    setSelected(randomNumber);
+  console.log(votes);
+
+  const handleOnClickNext = () => {
+    const updatedRandomNumber = Math.floor(Math.random() * anecdotes.length);
+    setSelected(updatedRandomNumber);
+    setRandomNumber(updatedRandomNumber);
+  };
+
+  const handleOnClickVote = () => {
+    const copy = [...votes];
+    copy[randomNumber] += 1;
+    setVotes(copy);
   };
 
   return (
     <div>
       <h2>{anecdotes[selected]}</h2>
+      <DispalyVote votes={votes[selected]} />
       <div>
-        <Button onClick={handleOnClick} text="Next anecdote" />
+        <Button onClick={handleOnClickNext} text="Next anecdote" />
+        <Button onClick={handleOnClickVote} text="Vote" />
       </div>
     </div>
   );
