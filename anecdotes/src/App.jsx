@@ -8,6 +8,24 @@ const DispalyVote = (props) => {
   return <p>Has {props.votes} votes</p>;
 };
 
+const DisplayVotedAnecdote = ({ votes, anecdotes }) => {
+  let mostVoted = 0;
+  let positionVoted = 0;
+  let position = 0;
+  votes.forEach((value) => {
+    if (value > mostVoted) {
+      mostVoted = value;
+      positionVoted = position;
+    }
+    position += 1;
+  });
+  return (
+    <div>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[positionVoted]}
+    </div>
+  );
+};
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -23,8 +41,6 @@ const App = () => {
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const [randomNumber, setRandomNumber] = useState(0);
-
-  console.log(votes);
 
   const handleOnClickNext = () => {
     const updatedRandomNumber = Math.floor(Math.random() * anecdotes.length);
@@ -46,6 +62,7 @@ const App = () => {
         <Button onClick={handleOnClickNext} text="Next anecdote" />
         <Button onClick={handleOnClickVote} text="Vote" />
       </div>
+      <DisplayVotedAnecdote votes={votes} anecdotes={anecdotes} />
     </div>
   );
 };
