@@ -4,7 +4,7 @@ const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>;
 };
 
-const DisplayStats = (props) => {
+const Statistics = (props) => {
   if (props.text === "Positive") {
     return (
       <p>
@@ -64,12 +64,12 @@ const App = () => {
       </div>
       <div>
         <h1>Statistics</h1>
-        <DisplayStats text="Good" value={good} />
-        <DisplayStats text="Neutral" value={neutral} />
-        <DisplayStats text="Bad" value={bad} />
-        <DisplayStats text="All" value={total} />
-        <DisplayStats text="Average" value={average} />
-        <DisplayStats text="Positive" value={positive} />
+        <Statistics text="Good" value={good} />
+        <Statistics text="Neutral" value={neutral} />
+        <Statistics text="Bad" value={bad} />
+        <Statistics text="All" value={total} />
+        <Statistics text="Average" value={average} />
+        <Statistics text="Positive" value={positive} />
       </div>
     </div>
   );
